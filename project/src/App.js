@@ -3,6 +3,7 @@ import MainHome from "./components/Homepage/MainHome";
 import About from "./components/About/About";
 import "./App.css";
 import Login from "./components/LogIn/LogIn";
+import logo from "./assets/logoTitle.png";
 
 function App() {
   const [render, setRender] = useState(MainHome);
@@ -28,7 +29,11 @@ function App() {
     <div>
       <div>{isTrue && <Login onClose={HideLogIn} />}</div>
       <div className="navbar">
-        <div className="image">Image</div>
+        <div className="image">
+          <div className="navbarimg">
+            <img src={logo} alt="logo"></img>
+          </div>
+        </div>
         <div className="links">
           <ul>
             <li>
