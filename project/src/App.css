@@ -1,0 +1,54 @@
+.navbar {
+    background-color: #2C394B;
+    color:white;
+    display:flex;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li a {
+    text-decoration: none;
+    color:white;
+    transition: 0.5s;
+}
+
+ul li a:hover {
+    color:#3FA796;
+}
+
+.image {
+    flex:1;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.links {
+    flex:1;
+}
+
+.links ul {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.links ul li {
+    margin:0px 20px 0px 20px;
+}
+
+button {
+    background-color:#2C394B ;
+    border:1px solid #3FA796;
+    border-radius: 20px;
+    padding:8px 12px 8px 12px;
+    transition:0.5s;
+    color:white;
+}
+
+button:hover {
+    background-color: #3FA796;
+    color:white;
+}
