@@ -79,13 +79,13 @@ form .form-inner .form-group{
 }
 form .form-inner .form-group input{
     display: block;
-    width: 100%;
+    width: 90%;
     padding: 10px 15px;
-    background-color: #082032;
-    border-radius: 8px;
+    background-color: #fff;
+    border-radius: 20px;
     border: 1px black solid;
     transition: 0.4s;
-    color: white;
+    color: black;
 }
 
 form .form-inner .form-group input:focus{

@@ -21,7 +21,7 @@ function MainHome() {
                 <Features></Features>
                 <CurrProg></CurrProg>
             </div>
-            <div class="gap">.</div>
+            <div class="gap-below">.</div>
         </div>
     );
 }

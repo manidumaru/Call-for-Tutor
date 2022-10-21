@@ -64,7 +64,7 @@ const LoginForm = (props) => {
             <h5>Dont have an account?</h5>
             <div className="logintosign">
               <Link to="/sign-up">
-                <h5> Sign UP</h5>
+                <h5> Sign Up</h5>
               </Link>
             </div>
           </div>
