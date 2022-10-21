@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Modal from "../UI/Modal";
-import "./LogInForm.css";
+// import "./LogIn.css";
 import loginImage from "../../assets/loginImage.png";
 import { Link } from "react-router-dom";
 
-const LoginForm = (props) => {
+const SignUpForm = (props) => {
   const [userDetails, setUserDetails] = useState({
     userEmail: "",
     userPassword: "",
+    userName: "",
   });
 
   const submitHandler = (event) => {
@@ -43,6 +44,21 @@ const LoginForm = (props) => {
                 ></input>
               </div>
               <div className="form-group">
+                <label htmlFor="username">Email:</label>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  value={userDetails.userName}
+                  onChange={(e) =>
+                    setUserDetails({
+                      ...userDetails,
+                      userName: e.target.value,
+                    })
+                  }
+                ></input>
+              </div>
+              <div className="form-group">
                 <label htmlFor="password">Password:</label>
                 <input
                   type="password"
@@ -57,14 +73,14 @@ const LoginForm = (props) => {
                   }
                 ></input>
               </div>
-              <button type="submit">Log In</button>
+              <button type="submit">Sign Up</button>
             </div>
           </form>
           <div className="login_noacc">
-            <h5>Dont have an account?</h5>
+            <h5>Already have an account?</h5>
             <div className="logintosign">
-              <Link to="/sign-up">
-                <h5> Sign UP</h5>
+              <Link to="/log-in">
+                <h5> Log In</h5>
               </Link>
             </div>
           </div>
@@ -74,4 +90,4 @@ const LoginForm = (props) => {
   );
 };
 
-export default LoginForm;
+export default SignUpForm;

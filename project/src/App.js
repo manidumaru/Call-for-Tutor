@@ -6,6 +6,7 @@ import Explore from "./components/Explore/Explore";
 import "./App.css";
 import LogIn from "./components/LogIn/LogIn";
 
+import SignUp from "./components/LogIn/SignUp";
 function App() {
   return (
     <div>
@@ -42,6 +43,7 @@ function App() {
         <Route path="/explore" element={<Explore />}></Route>
         <Route path="/about-us" element={<About />}></Route>
         <Route path="/log-in" element={<LogIn />}></Route>
+        <Route path="/sign-up" element={<SignUp />}></Route>
       </Routes>
     </div>
   );

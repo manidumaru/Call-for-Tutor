@@ -6,7 +6,7 @@ const LogIn = () => {
   const Navigate = useNavigate();
 
   const HideLogIn = () => {
-    Navigate(-1);
+    Navigate("/");
   };
   return (
     <div>
