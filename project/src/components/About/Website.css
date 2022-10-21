@@ -1,0 +1,39 @@
+.Title {
+    font-size: 30px;
+    color:white;
+    margin: 20px 0px 0px 90px;
+}
+
+.website-info {
+    margin:10px 60px 0px 60px;
+    display:flex;
+    flex-wrap: wrap;
+    color:white;
+}
+
+.logo {
+    flex:1;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image img {
+    height:330px;
+    width:390px;
+    margin-left:30px;
+    opacity: 0.4;
+}
+
+.information {
+    flex:2;
+    display:flex;
+    align-items: center;
+    border-left: 0.5px solid #3FA796;
+}
+
+.description {
+    text-align: justify;
+    margin: 0px 0px 0px 80px;
+    opacity: 0.6;
+}

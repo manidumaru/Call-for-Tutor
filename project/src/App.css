@@ -18,6 +18,11 @@ ul li a:hover {
     color:#3FA796;
 }
 
+ul li a.active {
+    border-bottom: 1px solid #3FA796;
+}
+
+
 .image {
     flex:1;
     
@@ -28,7 +33,7 @@ ul li a:hover {
 }
 
 .navbar-image {
-    margin:24px;
+    margin:20px 0px 0px 50px;
 }
 
 .links ul {
@@ -42,15 +47,22 @@ ul li a:hover {
 }
 
 button {
-    background-color:#2C394B ;
+    background-color:#3FA796;
     border:1px solid #3FA796;
     border-radius: 20px;
     padding:8px 12px 8px 12px;
     transition:0.5s;
-    color:white;
+    color:black;
+    cursor: pointer;
 }
 
 button:hover {
-    background-color: #3FA796;
+    background-color: #2C394B;
     color:white;
+    border:1px solid #3FA796;
+}
+
+.links a:active {
+    /* text-decoration: underline; */
+    border-bottom: 1px solid aqua;
 }

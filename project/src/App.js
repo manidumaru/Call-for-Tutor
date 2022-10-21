@@ -1,7 +1,8 @@
 import React from 'react';
-import {Link, Route, Routes} from 'react-router-dom';
+import {NavLink, Route, Routes} from 'react-router-dom';
 import MainHome from './components/Homepage/MainHome';
 import About from './components/About/About';
+import Explore from './components/Explore/Explore';
 import "./App.css";
 
 function App() {
@@ -13,9 +14,9 @@ function App() {
                 </div>
                 <div className="links">
                     <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to={MainHome}>Explore</Link></li>
-                        <li><Link to="/About-Us">About</Link></li>
+                        <li><NavLink end to="/">Home</NavLink></li>
+                        <li><NavLink to="/explore">Explore</NavLink></li>
+                        <li><NavLink to="/about-us">About</NavLink></li>
                         <li><button>Log In</button></li>
                         <li><button>Donate</button></li>
                     </ul>
@@ -23,7 +24,8 @@ function App() {
             </div>
             <Routes>
                 <Route path="/" element={<MainHome/>}></Route>
-                <Route path="/About-Us" element={<About/>}></Route>
+                <Route path="/explore" element={<Explore/>}></Route>
+                <Route path="/about-us" element={<About/>}></Route>
             </Routes>
         </div>
     );
