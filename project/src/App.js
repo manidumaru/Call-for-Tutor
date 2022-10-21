@@ -1,24 +1,14 @@
-import React, { useState } from "react";
-import { NavLink, Route, Routes } from "react-router-dom";
+import React from "react";
+import { NavLink, Link, Route, Routes } from "react-router-dom";
 import MainHome from "./components/Homepage/MainHome";
 import About from "./components/About/About";
 import Explore from "./components/Explore/Explore";
 import "./App.css";
-import Login from "./components/LogIn/LogIn";
+import LogIn from "./components/LogIn/LogIn";
 
 function App() {
-  const [isTrue, setIsTure] = useState(false);
-
-  const showLogIn = () => {
-    setIsTure(true);
-  };
-
-  const hideLogin = () => {
-    setIsTure(false);
-  };
   return (
     <div>
-      {isTrue && <Login onClose={hideLogin}></Login>}
       <div className="navbar">
         <div className="image">
           <div className="navbar-image">Image</div>
@@ -37,7 +27,9 @@ function App() {
               <NavLink to="/about-us">About</NavLink>
             </li>
             <li>
-              <button onClick={showLogIn}>Log In</button>
+              <Link to="/log-in">
+                <button>Log In</button>
+              </Link>
             </li>
             <li>
               <button>Donate</button>
@@ -49,6 +41,7 @@ function App() {
         <Route path="/" element={<MainHome />}></Route>
         <Route path="/explore" element={<Explore />}></Route>
         <Route path="/about-us" element={<About />}></Route>
+        <Route path="/log-in" element={<LogIn />}></Route>
       </Routes>
     </div>
   );

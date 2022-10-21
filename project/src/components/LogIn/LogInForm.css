@@ -108,6 +108,7 @@ width: 20%;
     padding-left: 10%;
     column-gap: 10px;
     color: #3FA796;
+    background-color: white;
 }
 
 .login_noacc .logintosign{
