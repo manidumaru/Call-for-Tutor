@@ -3,6 +3,7 @@ import {NavLink, Route, Routes} from 'react-router-dom';
 import MainHome from './components/Homepage/MainHome';
 import About from './components/About/About';
 import Explore from './components/Explore/Explore';
+import logo from "./assets/aboutus.png";
 import "./App.css";
 
 function App() {
@@ -10,7 +11,9 @@ function App() {
         <div>
             <div className="navbar">
                 <div className="image">
-                    <div className="navbar-image">Image</div>
+                    <div className="navbar-image">
+                        <img src={logo} alt=""></img>
+                    </div>
                 </div>
                 <div className="links">
                     <ul>

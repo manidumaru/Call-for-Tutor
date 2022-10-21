@@ -33,7 +33,7 @@ ul li a.active {
 }
 
 .navbar-image {
-    margin:20px 0px 0px 50px;
+    margin:5px 0px 0px 50px;
 }
 
 .links ul {
@@ -65,4 +65,10 @@ button:hover {
 .links a:active {
     /* text-decoration: underline; */
     border-bottom: 1px solid aqua;
+}
+
+.navbar-image img {
+    width:70px;
+    height:55px;
+    opacity: 2;
 }
