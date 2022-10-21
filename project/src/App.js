@@ -1,27 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {Link, Route, Routes} from 'react-router-dom';
 import MainHome from './components/Homepage/MainHome';
 import About from './components/About/About';
 import "./App.css";
 
 function App() {
-    const [render, setRender] = useState(MainHome);
-    function RenderHomepage() {
-        setRender(MainHome);
-    }
-    function RenderExplore() {
-
-    }
-    function RenderAbout() {
-        setRender(About);
-    }
-    function RenderLogin() {
-
-    }
-    function RenderDonate() {
-
-    }
-
-
     return(
         <div>
             <div className="navbar">
@@ -30,17 +13,18 @@ function App() {
                 </div>
                 <div className="links">
                     <ul>
-                        <li><a href="#" onClick={RenderHomepage}>Home</a></li>
-                        <li><a href="#" onClick={RenderExplore}>Explore</a></li>
-                        <li><a href="#" onClick={RenderAbout}>About Us</a></li>
-                        <li><button onClick={RenderLogin}>Log In</button></li>
-                        <li><button onClick={RenderDonate}>Donate</button></li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to={MainHome}>Explore</Link></li>
+                        <li><Link to="/About-Us">About</Link></li>
+                        <li><button>Log In</button></li>
+                        <li><button>Donate</button></li>
                     </ul>
                 </div>
             </div>
-            <div>
-                {render}
-            </div>
+            <Routes>
+                <Route path="/" element={<MainHome/>}></Route>
+                <Route path="/About-Us" element={<About/>}></Route>
+            </Routes>
         </div>
     );
 }
