@@ -8,19 +8,26 @@ function App() {
     function RenderHomepage() {
         setRender(MainHome);
     }
+    function RenderExplore() {
 
-    function RenderExplore() {}
+    }
     function RenderAbout() {
         setRender(About);
     }
-    function RenderLogin() {}
-    function RenderDonate() {}
+    function RenderLogin() {
+
+    }
+    function RenderDonate() {
+
+    }
 
 
     return(
         <div>
             <div className="navbar">
-                <div className="image">Image</div>
+                <div className="image">
+                    <div className="navbar-image">Image</div>
+                </div>
                 <div className="links">
                     <ul>
                         <li><a href="#" onClick={RenderHomepage}>Home</a></li>

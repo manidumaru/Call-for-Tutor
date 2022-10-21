@@ -20,13 +20,15 @@ ul li a:hover {
 
 .image {
     flex:1;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+    
 }
 
 .links {
     flex:1;
+}
+
+.navbar-image {
+    margin:24px;
 }
 
 .links ul {
