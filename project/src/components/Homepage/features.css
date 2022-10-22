@@ -12,6 +12,7 @@
 
 .Features {
     display: flex;
+    flex-wrap: wrap;
     margin:0px 90px 0px 100px;
 }
 

@@ -13,6 +13,7 @@
 .event-banner {
     color:white;
     display:flex;
+    flex-wrap: wrap;
     margin-top:20px;
     border-radius: 50px;
     background-color: #2C394B;

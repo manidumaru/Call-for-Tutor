@@ -5,14 +5,16 @@ import About from "./components/About/About";
 import Explore from "./components/Explore/Explore";
 import "./App.css";
 import LogIn from "./components/LogIn/LogIn";
-
+import logo from "./assets/aboutus.png"
 import SignUp from "./components/LogIn/SignUp";
 function App() {
   return (
     <div>
       <div className="navbar">
         <div className="image">
-          <div className="navbar-image">Image</div>
+          <div className="navbar-image">
+            <img src={logo} alt=""></img>
+          </div>
         </div>
         <div className="links">
           <ul>

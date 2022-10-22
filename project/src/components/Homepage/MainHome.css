@@ -6,6 +6,7 @@
 
 .flyer {
     display:flex;
+    flex-wrap:wrap;
     color:white;
     margin:0px 120px 50px 120px;
 }
