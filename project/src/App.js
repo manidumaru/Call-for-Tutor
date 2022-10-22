@@ -5,11 +5,12 @@ import About from "./components/About/About";
 import Explore from "./components/Explore/Explore";
 import "./App.css";
 import LogIn from "./components/LogIn/LogIn";
+import Donate from "./components/Donate/Donate";
 import logo from "./assets/aboutus.png"
 import SignUp from "./components/LogIn/SignUp";
 function App() {
   return (
-    <div>
+    <div className="main-page">
       <div className="navbar">
         <div className="image">
           <div className="navbar-image">
@@ -35,7 +36,9 @@ function App() {
               </Link>
             </li>
             <li>
-              <button>Donate</button>
+              <Link to="/donate">
+                <button>Donate</button>
+              </Link>
             </li>
           </ul>
         </div>
@@ -46,6 +49,7 @@ function App() {
         <Route path="/about-us" element={<About />}></Route>
         <Route path="/log-in" element={<LogIn />}></Route>
         <Route path="/sign-up" element={<SignUp />}></Route>
+        <Route path="/donate" element={<Donate/>}></Route>
       </Routes>
     </div>
   );
