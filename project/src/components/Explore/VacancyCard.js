@@ -8,15 +8,14 @@ function VacancyCard(props) {
                 <img src={school} alt=""></img>
             </div>
             <div className="vacancy-description">
-                <div className="description">
-                    <p>Name: {props.vacancy.Name}</p>
-                    <p>District: {props.vacancy.District}</p>
-                    <p>Subject: {props.vacancy.Subject}</p>
-                </div>
-                <div className="view-details-btn">
-                    <button>View Details</button> 
-                </div>
+                <p>Name: {props.vacancy.Name}</p>
+                <p>District: {props.vacancy.District}</p>
+                <p>Subject: {props.vacancy.Subject}</p>
             </div>
+            <div className="view-details-btn">
+                <button>View Details</button> 
+            </div>
+            
         </div>
     );
 }

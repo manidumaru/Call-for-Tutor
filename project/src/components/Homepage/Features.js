@@ -11,6 +11,10 @@ function Features() {
     Navigate("/explore");
   };
 
+  function popDonate() {
+    Navigate("/donate");
+  }
+
   return (
     <div className="feature-main">
       <div class="feature-title">Features</div>
@@ -51,7 +55,7 @@ function Features() {
             </p>
           </div>
           <div class="card-button">
-            <button>Donate</button>
+            <button onClick={popDonate}>Donate</button>
           </div>
         </div>
         <div class="Card">

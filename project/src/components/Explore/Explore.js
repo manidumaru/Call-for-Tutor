@@ -34,9 +34,16 @@ function Explore() {
           </div>
         </div>
       </div>
-      <VacancyCard vacancy={vacancies[0]}></VacancyCard>
-      <VacancyCard vacancy={vacancies[1]}></VacancyCard>
-      <VacancyCard vacancy={vacancies[2]}></VacancyCard>
+      <div className="vacancy-enclosure">
+        <VacancyCard vacancy={vacancies[0]}></VacancyCard>
+        <VacancyCard vacancy={vacancies[0]}></VacancyCard>
+        <VacancyCard vacancy={vacancies[1]}></VacancyCard>
+        <VacancyCard vacancy={vacancies[1]}></VacancyCard>
+        <VacancyCard vacancy={vacancies[1]}></VacancyCard>
+        <VacancyCard vacancy={vacancies[1]}></VacancyCard>
+        <VacancyCard vacancy={vacancies[1]}></VacancyCard>
+        <VacancyCard vacancy={vacancies[2]}></VacancyCard>
+      </div>
     </div>
   );
 }
