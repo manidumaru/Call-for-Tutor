@@ -44,7 +44,7 @@ const SignUpForm = (props) => {
                 ></input>
               </div>
               <div className="form-group">
-                <label htmlFor="username">Email:</label>
+                <label htmlFor="username">Username:</label>
                 <input
                   type="text"
                   name="username"
