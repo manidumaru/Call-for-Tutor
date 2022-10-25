@@ -6,8 +6,9 @@ import Explore from "./components/Explore/Explore";
 import "./App.css";
 import LogIn from "./components/LogIn/LogIn";
 import Donate from "./components/Donate/Donate";
-import logo from "./assets/aboutus.png"
+import logo from "./assets/aboutus.png";
 import SignUp from "./components/LogIn/SignUp";
+import { motion as m } from "framer-motion";
 function App() {
   return (
     <div className="main-page">
@@ -32,12 +33,24 @@ function App() {
             </li>
             <li>
               <Link to="/log-in">
-                <button>Log In</button>
+                <m.button
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Log In
+                </m.button>
               </Link>
             </li>
             <li>
               <Link to="/donate">
-                <button>Donate</button>
+                <m.button
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Donate
+                </m.button>
               </Link>
             </li>
           </ul>
@@ -49,7 +62,7 @@ function App() {
         <Route path="/about-us" element={<About />}></Route>
         <Route path="/log-in" element={<LogIn />}></Route>
         <Route path="/sign-up" element={<SignUp />}></Route>
-        <Route path="/donate" element={<Donate/>}></Route>
+        <Route path="/donate" element={<Donate />}></Route>
       </Routes>
     </div>
   );

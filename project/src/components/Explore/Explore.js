@@ -1,8 +1,7 @@
 import "./Explore.css";
 import VacancyCard from "./VacancyCard";
-
+import { motion as m } from "framer-motion";
 function Explore() {
-
   const vacancies = [
     {
       Name: "Kathmandu University",
@@ -15,14 +14,19 @@ function Explore() {
       Subject: "Social Studies",
     },
     {
-      Name:"Alfa Secondary School",
+      Name: "Alfa Secondary School",
       District: "Morang",
       Subject: "English",
-    }
-  ] 
+    },
+  ];
 
   return (
-    <div class="explore-main">
+    <m.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      class="explore-main"
+    >
       <div className="heading">
         <div className="opportunities">VACANCIES</div>
         <div className="search-bar">
@@ -44,7 +48,7 @@ function Explore() {
         <VacancyCard vacancy={vacancies[1]}></VacancyCard>
         <VacancyCard vacancy={vacancies[2]}></VacancyCard>
       </div>
-    </div>
+    </m.div>
   );
 }
 

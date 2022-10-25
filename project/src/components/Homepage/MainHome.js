@@ -3,6 +3,7 @@ import Features from "./Features";
 import CurrProg from "./CurrProg";
 import bahini from "../../assets/bahini.png";
 import { useNavigate } from "react-router-dom";
+import { motion as m } from "framer-motion";
 
 function MainHome() {
   const Navigate = useNavigate();
@@ -10,7 +11,12 @@ function MainHome() {
     Navigate("/sign-up");
   };
   return (
-    <div className="MainHome">
+    <m.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className="MainHome"
+    >
       <div className="flyer">
         <div className="image-holder">
           <img src={bahini} alt=""></img>
@@ -20,9 +26,15 @@ function MainHome() {
           <div>Nation</div>
           <div class="gap"></div>
 
-          <button class="Sign-up" onClick={ShowSignUp}>
+          <m.button
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+            class="Sign-up"
+            onClick={ShowSignUp}
+          >
             Sign Up
-          </button>
+          </m.button>
         </div>
       </div>
       <div className="bottomHalf">
@@ -30,7 +42,7 @@ function MainHome() {
         <CurrProg></CurrProg>
       </div>
       <div class="gap-below">.</div>
-    </div>
+    </m.div>
   );
 }
 

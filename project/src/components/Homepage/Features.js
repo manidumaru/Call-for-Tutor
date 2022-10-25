@@ -3,7 +3,7 @@ import apply from "../../assets/applyyy.png";
 import donate from "../../assets/donate.png";
 import volunteer from "../../assets/volunteer.png";
 import { useNavigate } from "react-router-dom";
-
+import { motion as m } from "framer-motion";
 function Features() {
   const Navigate = useNavigate();
 
@@ -16,9 +16,21 @@ function Features() {
   }
 
   return (
-    <div className="feature-main">
+    <m.div
+      // whileInView={{ opacity: 1 }}
+      // initial={{ opacity: 0 }}
+      // // animate={{ y: "0%" }}
+      // transition={{ delay: 0.5, duration: 0.5 }}
+      className="feature-main"
+    >
       <div class="feature-title">Features</div>
-      <div className="Features">
+      <m.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: "circIn" }}
+        className="Features"
+      >
         <div class="Card">
           <div className="card-top">
             <div className="card-top-image">
@@ -36,7 +48,14 @@ function Features() {
             <p> Explore Vacancies </p>
           </div>
           <div class="card-button">
-            <button onClick={ShowExplore}>Explore</button>
+            <m.button
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              onClick={ShowExplore}
+            >
+              Explore
+            </m.button>
           </div>
         </div>
         <div class="Card">
@@ -55,7 +74,14 @@ function Features() {
             </p>
           </div>
           <div class="card-button">
-            <button onClick={popDonate}>Donate</button>
+            <m.button
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              onClick={popDonate}
+            >
+              Donate
+            </m.button>
           </div>
         </div>
         <div class="Card">
@@ -74,8 +100,8 @@ function Features() {
             </p>
           </div>
         </div>
-      </div>
-    </div>
+      </m.div>
+    </m.div>
   );
 }
 
