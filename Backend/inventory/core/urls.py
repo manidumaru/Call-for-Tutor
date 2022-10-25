@@ -3,9 +3,9 @@ from django.urls import path, include
 from core import views
 
 urlpatterns = [
-    path('activity',views.ActivityList.as_view()),
-    path('activity/<int:pk>',views.ActivityRetrieve.as_view()),
-    path('activity/<int:pk>/updelete',views.ActivityRetrieveUpdateDestroy.as_view()),
+    path('vaccancy',views.VaccancyList.as_view()),
+    path('vaccancy/<int:pk>',views.VaccancyRetrieve.as_view()),
+    path('vaccancy/<int:pk>/updelete',views.VaccancyRetrieveUpdateDestroy.as_view()),
     path('employer',views.EmployerListCreate.as_view()),
     path('employer/<int:pk>',views.EmployerRetrieve.as_view()),
     path('employer/<int:pk>/updelete',views.EmployerRetrieveUpdateDestroy.as_view()),
@@ -15,9 +15,9 @@ urlpatterns = [
     path('employee/<int:pk>',views.EmployeeRetrieve.as_view()),
     path('employee/<int:pk>/updelete',views.EmployeeRetrieveUpdateDestroy.as_view()),
 
-    path('activity/<int:pk>/apply',views.ApplyListCreate.as_view()),
-    path('activity/apply',views.ApplyList.as_view()),
-    path('activity/apply/<int:pk>',views.ApplyRetrieveUpdateDestroy.as_view()),
+    path('vaccancy/<int:pk>/apply',views.ApplyListCreate.as_view()),
+    path('vaccancy/apply',views.ApplyList.as_view()),
+    path('vaccancy/apply/<int:pk>',views.ApplyRetrieveUpdateDestroy.as_view()),
 
 
 

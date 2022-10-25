@@ -1,8 +1,7 @@
-from wsgiref import validate
-from django.forms import ValidationError
+from datetime import date
 from rest_framework import generics, permissions
-from .models import Activity, Apply, Employer, Employee, User
-from .serializer import ActivitySerializer, ApplyRetrieveSerializer, ApplySerializer, EmployerSerializer, EmployeeSerializer, UserSerializer
+from .models import  Apply, Employer, Employee, User, Vaccancy
+from .serializer import  ApplyRetrieveSerializer, ApplySerializer, EmployerSerializer, EmployeeSerializer, UserSerializer, VaccancySerializer
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, logout
 from django.views.decorators.csrf import csrf_exempt
@@ -11,13 +10,15 @@ from django.http import JsonResponse
 from django.db import IntegrityError
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import serializers
-
+from django.core import serializers as ser
+from django.forms.models import model_to_dict
+import json
 from core import serializer
 # Create your views here.
 
-class ActivityList(generics.ListCreateAPIView):
-    queryset= Activity.objects.all()
-    serializer_class=ActivitySerializer
+class VaccancyList(generics.ListCreateAPIView):
+    queryset= Vaccancy.objects.all()
+    serializer_class=VaccancySerializer
     permission_classes=[permissions.IsAuthenticatedOrReadOnly]
     def get_serializer_context(self):
         print("GGGGGGGGGGGGGGGGGGGGG")
@@ -30,49 +31,48 @@ class ActivityList(generics.ListCreateAPIView):
         return {'is_employer':is_employer}
 
     def perform_create(self, serializer):
-        print("FFFFFFFFFFFFFFFFF")
         s=Employer.objects.filter(user=self.request.user)
-        print(s)
         serializer.save(poster=Employer.objects.get(user=self.request.user))
 
-class ActivityRetrieve(generics.RetrieveAPIView):
+class VaccancyRetrieve(generics.RetrieveAPIView):
 
     # def get_queryset(self):
     #     user=self.request.user
-    #     return Activity.objects.filter(poster=user)
-    queryset=Activity.objects.all()
+    #     return Vaccancy.objects.filter(poster=user)
+    queryset=Vaccancy.objects.all()
 
 
-    serializer_class=ActivitySerializer
+    serializer_class=VaccancySerializer
     # permission_classes=[permissions.IsAuthenticatedOrReadOnly]
 
-class ActivityRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class VaccancyRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         if(self.request.user.is_employer==False and self.request.user.is_employee==False ):
 
-            raise serializers.ValidationError({"Error":"First create Employer-Profile!!!"})
+            raise serializers.ValidationError({"Error":"You need to have Employer-Profile for this link!!!"})
         if(self.request.user.is_employee):          
 
             raise serializers.ValidationError({"Error":"Employee cannot access this link!!!"})
         
-        if(Activity.objects.get(pk=self.kwargs['pk']).poster==Employer.objects.get(user=self.request.user)):
-            return Activity.objects.filter(pk=self.kwargs['pk'])
+        if(Vaccancy.objects.get(pk=self.kwargs['pk']).poster==Employer.objects.get(user=self.request.user)):
+            return Vaccancy.objects.filter(pk=self.kwargs['pk'])
         else:
-            raise serializers.ValidationError({"Error":"You are not the proprietor of this Activity!!"})
+            raise serializers.ValidationError({"Error":"You are not the proprietor of this Vaccancy!!"})
 
 
-    serializer_class=ActivitySerializer
+    serializer_class=VaccancySerializer
     permission_classes=[permissions.IsAuthenticated]
 
 class UserList(generics.ListAPIView):
     serializer_class=UserSerializer
-    permission_classes=[permissions.IsAuthenticated]
-    def get_queryset(self):
-        if(self.request.user.is_superuser==True):
-            return User.objects.all()
-        else:
-            raise serializers.ValidationError({"error":"Only Super Users can access this link!!"})
+    queryset=User.objects.all()
+    # permission_classes=[permissions.IsAuthenticatedOrReadOnly]
+    # def get_queryset(self):
+    #     if(self.request.user.is_superuser==True):
+    #         return User.objects.all()
+    #     else:
+    #         raise serializers.ValidationError({"error":"Only Super Users can access this link!!"})
 
 
 class EmployerListCreate(generics.ListCreateAPIView):
@@ -163,14 +163,14 @@ class ApplyListCreate(generics.ListCreateAPIView):
         user = self.request.user
         # post = Post.objects.get(pk=self.kwargs['pk'])
         if(user.is_employee==False and user.is_employer==False):
-            raise serializers.ValidationError({'Error':"You need to create Employee-Profile to apply!!"})
+            raise serializers.ValidationError({'Error':"You need to have Employee-Profile to apply!!"})
         elif (user.is_employee):
-            return Apply.objects.filter(employee=Employee.objects.get(user=user) , activity=self.kwargs['pk'])
+            return Apply.objects.filter(employee=Employee.objects.get(user=user) , vaccancy=self.kwargs['pk'])
         
-        elif(Activity.objects.filter(poster=Employer.objects.get(user=user), pk=self.kwargs['pk'])):
-            return Apply.objects.filter(activity=self.kwargs['pk'])
+        elif(Vaccancy.objects.filter(poster=Employer.objects.get(user=user), pk=self.kwargs['pk'])):
+            return Apply.objects.filter(vaccancy=self.kwargs['pk'])
         else:
-            raise serializers.ValidationError({'Error':"You are not the Proprietor of this Activity!!"})
+            raise serializers.ValidationError({'Error':"You are not the Proprietor of this Vaccancy!!"})
 
 
     def get_serializer_context(self):
@@ -179,23 +179,26 @@ class ApplyListCreate(generics.ListCreateAPIView):
         user=self.request.user
 
         if(User.objects.filter(id=user.id).exists()):
-            if(Employee.objects.filter(user=user).exists() and (user.is_employee or user.is_employee)):
+            if(Employee.objects.filter(user=user).exists()):
                 try:
-                    apply=Apply.objects.filter(employee=Employee.objects.get(user=user), activity=Activity.objects.get(pk=self.kwargs['pk']))
+                    apply=Apply.objects.filter(employee=Employee.objects.get(user=user), vaccancy=Vaccancy.objects.get(pk=self.kwargs['pk']))
                 except:
                     apply=None
                
+           
             else:
-                
-                apply=Apply.objects.filter(activity=self.kwargs['pk'])
+                apply=None
             
 
             return {'user':user, 'apply':apply, 'method':method}
 
     def perform_create(self, serializer):
+        
         employee=Employee.objects.get(user=self.request.user)
-        activity=Activity.objects.get(pk=self.kwargs['pk'])
-        serializer.save(employee=employee, activity=activity, employer=activity.poster)
+        vaccancy=Vaccancy.objects.get(pk=self.kwargs['pk'])
+        if(vaccancy.deadline==date.today()):
+            raise serializers.ValidationError({'error':'Fucky you'})
+        serializer.save(employee=employee, vaccancy=vaccancy, employer=vaccancy.poster)
 
 
 class ApplyList(generics.ListAPIView):
@@ -251,21 +254,33 @@ def user_signup(request):
                 return JsonResponse({'error':'Email must be provided!!'}, status=400)
             if('name' not in data):
                 return JsonResponse({'error':'name must be provided!!'}, status=400)
-            user = User.objects.create_user(data['email'], name=data['name'], password=data['password'])
+            if('role' not in data):
+                return JsonResponse({'error':'role must be specified(EMPLOYER/EMPLOYEE)!!'}, status=400)
+            if(data['role'] != 'EMPLOYEE' and data['role']!='EMPLOYER'):
+                return JsonResponse({'error':'role must be either EMPLOYER or EMPLOYEE!!'}, status=400)
+            user = User.objects.create_user(data['email'], name=data['name'], password=data['password'], role=data['role'],)
             user.save()
+            if(user.role=='EMPLOYER'):
+                role="EMPLOYER"
+
+
+            else:
+                role="EMPLOYEE"
             token = Token.objects.create(user=user)
             
 
-            return JsonResponse({'token':str(token)}, status=201)
+            return JsonResponse({"role":role,'token':str(token)}, status=201)
         except IntegrityError:
 
             return JsonResponse({'error':'Email already exists!!'}, status=400)
 
 @csrf_exempt
 def user_login(request):
+    
     if request.method == 'POST':
         data = JSONParser().parse(request)
         user = authenticate(request, email=data['email'], password=data['password'])
+
         if user is None:
             return JsonResponse({'error':'Could not login. Please check username and password'}, status=400)
         else:
@@ -273,7 +288,22 @@ def user_login(request):
                 token = Token.objects.get(user=user)
             except:
                 token = Token.objects.create(user=user)
-            return JsonResponse({'token':str(token)}, status=200)
+            if(user.role=='EMPLOYER'):
+                if(user.is_employer):
+                    
+                    employer=Employer.objects.get(user=user)
+                    userjson={'role':"Employer", 'employer_id':employer.id, 'username':employer.username}
+                else:
+                    userjson={'role':'Employer'}
+            else:
+                if(user.is_employee):
+                    employee=Employee.objects.get(user=user)
+                    userjson={'role':"Employee", 'employee_id': employee.id, 'username':employee.username}
+
+                else:
+                    userjson={'role':"Employee"}
+         
+            return JsonResponse({'user':userjson,'token':str(token)}, status=200)
 
 
 @api_view(["POST"])
