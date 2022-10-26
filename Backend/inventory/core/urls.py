@@ -27,5 +27,8 @@ urlpatterns = [
     path('users',views.UserList.as_view()),
     path('api-auth', include('rest_framework.urls')),
 
+
+
+    path('change-password/', views.ChangePasswordView.as_view()),
 ]
 

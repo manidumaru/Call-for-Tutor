@@ -1,7 +1,8 @@
 from datetime import date
+from http.client import ResponseNotReady
 from rest_framework import generics, permissions
 from .models import  Apply, Employer, Employee, User, Vaccancy
-from .serializer import  ApplyRetrieveSerializer, ApplySerializer, EmployerSerializer, EmployeeSerializer, UserSerializer, VaccancySerializer
+from .serializer import  ApplyRetrieveSerializer, ApplySerializer, ChangePasswordSerializer, EmployerSerializer, EmployeeSerializer, UserSerializer, VaccancySerializer
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, logout
 from django.views.decorators.csrf import csrf_exempt
@@ -14,6 +15,9 @@ from django.core import serializers as ser
 from django.forms.models import model_to_dict
 import json
 from core import serializer
+from rest_framework import status
+from rest_framework.response import Response
+
 # Create your views here.
 
 class VaccancyList(generics.ListCreateAPIView):
@@ -316,3 +320,38 @@ def user_logout(request):
     logout(request)
 
     return JsonResponse({'success':'User Logged out successfully'}, status=200)
+
+
+class ChangePasswordView(generics.UpdateAPIView):
+    """
+    An endpoint for changing password.
+    """
+    serializer_class = ChangePasswordSerializer
+    model = User
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self, queryset=None):
+        obj = self.request.user
+        return obj
+
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            # Check old password
+            if not self.object.check_password(serializer.data.get("old_password")):
+                raise serializers.ValidationError({"old_password": "Wrong password"})
+            # set_password also hashes the password that the user will get
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            response = {
+                'status': 'success',
+                'code': status.HTTP_200_OK,
+                'message': 'Password updated successfully',
+                
+            }
+
+            return Response(response)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
