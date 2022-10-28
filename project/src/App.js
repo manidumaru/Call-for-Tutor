@@ -9,6 +9,7 @@ import Donate from "./components/Donate/Donate";
 import logo from "./assets/aboutus.png";
 import SignUp from "./components/LogIn/SignUp";
 import { motion as m } from "framer-motion";
+import UserProfile from "./components/UserProfile/UserProfile";
 function App() {
   return (
     <div className="main-page">
@@ -63,6 +64,7 @@ function App() {
         <Route path="/log-in" element={<LogIn />}></Route>
         <Route path="/sign-up" element={<SignUp />}></Route>
         <Route path="/donate" element={<Donate />}></Route>
+        <Route path="/profile" element={<UserProfile />}></Route>
       </Routes>
     </div>
   );

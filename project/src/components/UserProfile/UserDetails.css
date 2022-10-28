@@ -1,0 +1,102 @@
+.user-details {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 150px 50px;
+  /* border: 1px solid white; */
+}
+
+.profile-title {
+  margin-left: 70px;
+  color: white;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.user-details-top {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center;
+  align-items: center; */
+  /* background-color: #2c394b;
+  border-radius: 10px; */
+}
+
+.user-details-top-img {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-details-top-img img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.user-details-info {
+  display: flex;
+  flex: 3;
+  flex-direction: row;
+  background-color: #2c394b;
+  border-radius: 10px;
+  margin-left: 50px;
+}
+.user-details-info-left {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  margin-left: 5em;
+  margin-top: 30px;
+}
+
+.user-details-info-left h4 {
+  margin: 0px 0px 30px;
+  color: white;
+  opacity: 0.8;
+  font-size: 20px;
+}
+
+.user-details-info-right {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  margin-left: 5em;
+  margin-top: 30px;
+}
+
+.user-details-info-right h4 {
+  margin: 0px 0px 30px;
+  color: white;
+  opacity: 0.8;
+  font-size: 20px;
+}
+
+.underline {
+  border-top: 1px solid #3fa796;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.user-details-qualification {
+  background-color: #2c394b;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.user-details-qualification h1 {
+  color: white;
+  padding-left: 50px;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.user-details-qualification p {
+  color: white;
+  padding: 0px 50px 20px;
+}

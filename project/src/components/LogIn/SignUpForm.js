@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Modal from "../UI/Modal";
 // import "./LogIn.css";
 import loginImage from "../../assets/loginImage.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUpForm = (props) => {
+  const Navigate = useNavigate();
+
   const [userDetails, setUserDetails] = useState({
     userEmail: "",
     userPassword: "",
@@ -14,6 +16,7 @@ const SignUpForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     console.log(userDetails);
+    Navigate("/profile");
   };
 
   return (
