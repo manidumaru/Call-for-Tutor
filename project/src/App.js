@@ -10,6 +10,7 @@ import logo from "./assets/aboutus.png";
 import SignUp from "./components/LogIn/SignUp";
 import { motion as m } from "framer-motion";
 import UserProfile from "./components/UserProfile/UserProfile";
+
 function App() {
   return (
     <div className="main-page">
