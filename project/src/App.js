@@ -10,6 +10,7 @@ import logo from "./assets/aboutus.png";
 import SignUp from "./components/LogIn/SignUp";
 import { motion as m } from "framer-motion";
 import UserProfile from "./components/UserProfile/UserProfile";
+import VacancyDetails from "./components/Explore/VacancyDetails";
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />}></Route>
         <Route path="/donate" element={<Donate />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>
+        <Route path="/vacancy-details" element={<VacancyDetails />}></Route>
       </Routes>
     </div>
   );

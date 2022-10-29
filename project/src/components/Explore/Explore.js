@@ -1,6 +1,7 @@
 import "./Explore.css";
 import VacancyCard from "./VacancyCard";
 import { motion as m } from "framer-motion";
+import React from "react";
 function Explore() {
   const vacancies = [
     {
