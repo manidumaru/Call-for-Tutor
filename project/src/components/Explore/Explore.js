@@ -1,8 +1,10 @@
 import "./Explore.css";
 import VacancyCard from "./VacancyCard";
 import { motion as m } from "framer-motion";
-import React from "react";
+import React, { useState } from "react";
 function Explore() {
+  const [searchItem, setSearchItem] = useState("");
+
   const vacancies = [
     {
       Name: "Kathmandu University",
@@ -19,6 +21,11 @@ function Explore() {
       District: "Morang",
       Subject: "English",
     },
+    {
+      Name: "Meridian Higher ",
+      District: "Morang",
+      Subject: "English",
+    },
   ];
 
   return (
@@ -32,22 +39,57 @@ function Explore() {
         <div className="opportunities">VACANCIES</div>
         <div className="search-bar">
           <div className="input-holder">
-            <input type="text" placeholder="Search by Subject Name"></input>
+            <input
+              type="text"
+              onChange={(event) => {
+                setSearchItem(event.target.value);
+              }}
+              placeholder="Search by Subject Name"
+            ></input>
           </div>
           <div className="search-btn-holder">
             <button className="search-btn">Search</button>
           </div>
         </div>
       </div>
+      {/* vacancy card space */}
       <div className="vacancy-enclosure">
-        <VacancyCard vacancy={vacancies[0]}></VacancyCard>
-        <VacancyCard vacancy={vacancies[0]}></VacancyCard>
-        <VacancyCard vacancy={vacancies[1]}></VacancyCard>
-        <VacancyCard vacancy={vacancies[1]}></VacancyCard>
-        <VacancyCard vacancy={vacancies[1]}></VacancyCard>
-        <VacancyCard vacancy={vacancies[1]}></VacancyCard>
-        <VacancyCard vacancy={vacancies[1]}></VacancyCard>
-        <VacancyCard vacancy={vacancies[2]}></VacancyCard>
+        {/* {vacancies
+          .filter((value) => {
+            if (searchItem === "") {
+              return value.map((item) => {
+                return console.log(value);
+              });
+            } else if (
+              value.Subject.toLocaleLowerCase().includes(
+                searchItem.toLocaleLowerCase()
+              )
+            ) {
+              return value.map((item) => {
+                return (
+                  <div>
+                    <VacancyCard vancancy={item}></VacancyCard>
+                  </div>
+                );
+              });
+            }
+            return <div></div>;
+          })
+          .map((value) => {
+            return (
+              <div>
+                <VacancyCard vacancy={value}></VacancyCard>
+              </div>
+            );
+          })} */}
+
+        {vacancies.map((value) => {
+          return (
+            <div>
+              <VacancyCard vacancy={value}></VacancyCard>
+            </div>
+          );
+        })}
       </div>
     </m.div>
   );

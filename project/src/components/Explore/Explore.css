@@ -1,46 +1,45 @@
 .explore-main {
-    margin:40px 90px 30px 140px;
-    color:white;
+  margin: 40px 90px 30px 140px;
+  color: white;
 }
 
 .heading {
-    display:flex;
-    margin-bottom: 50px;
+  display: flex;
+  margin-bottom: 50px;
 }
 
 .opportunities {
-    flex:1;
-    font-size:40px;
+  flex: 1;
+  font-size: 40px;
 }
 
 .search-bar {
-    flex:1;
-    display:flex;
-    margin-right:50px;
-    justify-content: flex-end;
-    align-items: flex-end;
+  flex: 1;
+  display: flex;
+  margin-right: 50px;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .input-holder input {
-    height:40px;
-    width:350px;
-    padding-left:30px;
-    border-radius: 50px;
-    color:white;
-    font-size:16px;
-    border:1px solid white;
-    background-color: #082032;
+  height: 40px;
+  width: 350px;
+  padding-left: 30px;
+  border-radius: 50px;
+  color: white;
+  font-size: 16px;
+  border: 1px solid white;
+  background-color: #082032;
 }
 
 .search-btn {
-    height:45px;
-    width:100px;
-    border-radius:50px;
-    margin-left: 20px;
+  height: 45px;
+  width: 100px;
+  border-radius: 50px;
+  margin-left: 20px;
 }
 
 .vacancy-enclosure {
-    display:flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
 }
-

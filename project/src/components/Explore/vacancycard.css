@@ -1,39 +1,38 @@
 .vacancy-Card {
-    display:flex;
-    flex-direction: column;
-    width:290px;
-    height:400px;
-    margin-right:30px;
-    margin-bottom: 30px;
-    background-color: #2C394B;
-    border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 290px;
+  height: 400px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  background-color: #2c394b;
+  border-radius: 30px;
 }
 
 .vacancy-image {
-    margin-top:25px;
-    flex:1;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+  margin-top: 25px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .vacancy-image img {
-    height:130px;
-    width:auto;
-    border-radius: 50%;
+  height: 130px;
+  width: auto;
+  border-radius: 50%;
 }
 
 .vacancy-description {
-    font-size: 15px;
-    flex:3;
-    border-top:1px solid #3FA796;
-    margin: 17px 40px 0px 40px;
+  font-size: 15px;
+  flex: 3;
+  border-top: 1px solid #3fa796;
+  margin: 17px 40px 0px 40px;
 }
 
-
 .view-details-btn {
-    flex:1.7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1.7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

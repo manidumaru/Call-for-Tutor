@@ -1,0 +1,14 @@
+.apply-main-employer {
+  margin: 0px 150px 50px;
+}
+
+.apply-main-employee {
+  margin: 0px 150px 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.apply-title {
+  color: white;
+  margin: 50px 150px 50px;
+}

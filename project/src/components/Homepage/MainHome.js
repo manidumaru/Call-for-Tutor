@@ -1,7 +1,7 @@
 import "./MainHome.css";
 import Features from "./Features";
 import CurrProg from "./CurrProg";
-import bahini from "../../assets/bahini.png";
+import bahini from "../../assets/home.png";
 import { useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 

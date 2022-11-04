@@ -1,48 +1,50 @@
 .MainHome {
-    background-color: #082032;
-    height: 100vh;
-    margin-top:60px;
+  background-color: #082032;
+  height: 100vh;
+  margin-top: 60px;
 }
 
 .flyer {
-    display:flex;
-    flex-wrap:wrap;
-    color:white;
-    margin:0px 120px 50px 120px;
+  display: flex;
+  flex-wrap: wrap;
+  color: white;
+  margin: 0px 120px 50px 120px;
 }
 
 .image-holder {
-    flex:1;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image-holder img {
-    opacity: 0.6;
-    transform: skewY(-8deg);
+  opacity: 0.6;
+  transform: skewY(-8deg);
+  height: 500px;
+  width: auto;
 }
 
 .quote {
-    flex:2;
-    margin-top:60px;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  flex: 2;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .quote div {
-    font-size: 60px;
+  font-size: 60px;
 }
 
 .Sign-up {
-    height:60px;
-    width:120px;
-    font-size: 20px;
-    border-radius: 50px;
+  height: 60px;
+  width: 120px;
+  font-size: 20px;
+  border-radius: 50px;
 }
 
 .gap-below {
-    margin:100px;
+  margin: 100px;
 }

@@ -11,6 +11,7 @@ import SignUp from "./components/LogIn/SignUp";
 import { motion as m } from "framer-motion";
 import UserProfile from "./components/UserProfile/UserProfile";
 import VacancyDetails from "./components/Explore/VacancyDetails";
+import Apply from "./components/Apply/Apply";
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
             </li>
             <li>
               <NavLink to="/about-us">About</NavLink>
+            </li>
+            <li>
+              <NavLink to="/apply-info">Apply</NavLink>
             </li>
             <li>
               <Link to="/log-in">
@@ -68,6 +72,7 @@ function App() {
         <Route path="/donate" element={<Donate />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>
         <Route path="/vacancy-details" element={<VacancyDetails />}></Route>
+        <Route path="/apply-info" element={<Apply />}></Route>
       </Routes>
     </div>
   );

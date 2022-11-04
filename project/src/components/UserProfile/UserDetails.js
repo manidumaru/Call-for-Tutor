@@ -1,5 +1,6 @@
 import React from "react";
 import "./UserDetails.css";
+import { motion as m } from "framer-motion";
 
 const UserDetails = (props) => {
   return (
@@ -28,6 +29,15 @@ const UserDetails = (props) => {
       <div className="user-details-qualification">
         <h1>Qualification :</h1>
         <p>{props.details.qualifications}</p>
+      </div>
+      <div className="logout-button">
+        <m.button
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+          transition={{ duration: 0.2 }}
+        >
+          Log out
+        </m.button>
       </div>
     </div>
   );
