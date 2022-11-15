@@ -1,32 +1,48 @@
 import "./Explore.css";
 import VacancyCard from "./VacancyCard";
 import { motion as m } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+
 function Explore() {
+
+  const [vacancies, setVacancies] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(()=>{
+      axios.get("http://127.0.0.1:8000/api/vaccancy")
+      .then(function (response) {
+        setVacancies(response.data);
+        setIsLoading(false);
+      });
+
+    },[]);
+
   const [searchItem, setSearchItem] = useState("");
 
-  const vacancies = [
-    {
-      Name: "Kathmandu University",
-      District: "Kavre",
-      Subject: "Physics",
-    },
-    {
-      Name: "Madhyamik Bidhyalaya",
-      District: "Sindhupalchowk",
-      Subject: "Social Studies",
-    },
-    {
-      Name: "Alfa Secondary School",
-      District: "Morang",
-      Subject: "English",
-    },
-    {
-      Name: "Meridian Higher ",
-      District: "Morang",
-      Subject: "English",
-    },
-  ];
+  // const vacancies = [
+  //   {
+  //     Name: "Kathmandu University",
+  //     District: "Kavre",
+  //     Subject: "Physics",
+  //   },
+  //   {
+  //     Name: "Madhyamik Bidhyalaya",
+  //     District: "Sindhupalchowk",
+  //     Subject: "Social Studies",
+  //   },
+  //   {
+  //     Name: "Alfa Secondary School",
+  //     District: "Morang",
+  //     Subject: "English",
+  //   },
+  //   {
+  //     Name: "Meridian Higher ",
+  //     District: "Morang",
+  //     Subject: "English",
+  //   },
+  // ];
 
   return (
     <m.div
@@ -83,7 +99,7 @@ function Explore() {
             );
           })} */}
 
-        {vacancies.map((value) => {
+        {!isLoading && vacancies.map((value) => {
           return (
             <div>
               <VacancyCard vacancy={value}></VacancyCard>

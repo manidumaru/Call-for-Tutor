@@ -126,3 +126,13 @@ width: 20%;
 .empLabel {
     font-size:12px;
 }
+
+.errorDisplay {
+    display:flex;
+}
+
+.errorMessage {
+    color:red;
+    font-size: 12px;
+    margin-left:20px;
+}

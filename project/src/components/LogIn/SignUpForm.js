@@ -3,9 +3,29 @@ import Modal from "../UI/Modal";
 // import "./LogIn.css";
 import loginImage from "../../assets/loginImage.png";
 import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const SignUpForm = (props) => {
   const Navigate = useNavigate();
+  const [errorInfo, setErrorInfo] = useState(null);
+
+  const signUP = async(event) => {
+    event.preventDefault();
+    await axios.post('http://127.0.0.1:8000/api/signup', {
+    name: userDetails.userName,
+    email: userDetails.userEmail,
+    password: userDetails.userPassword,
+    role: userDetails.role,
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error.response.data.error);
+    setErrorInfo(error.response.data.error);
+  })
+  }
+  
 
   const [userDetails, setUserDetails] = useState({
     userEmail: "",
@@ -14,12 +34,6 @@ const SignUpForm = (props) => {
     role: "",
   });
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    console.log(userDetails);
-    Navigate("/profile");
-  };
-
   return (
     <Modal onClick={props.onClose}>
       <div className="login_parent">
@@ -27,7 +41,7 @@ const SignUpForm = (props) => {
           <img src={loginImage} alt="login "></img>
         </div>
         <div className="login_child2">
-          <form onSubmit={submitHandler}>
+          <form onSubmit={signUP}>
             <div className="form-inner">
               <div className="login_topic">
                 <h2>Call For Tutor</h2>
@@ -60,6 +74,7 @@ const SignUpForm = (props) => {
                       userName: e.target.value,
                     })
                   }
+                  required
                 ></input>
               </div>
               <div className="form-group">
@@ -87,19 +102,22 @@ const SignUpForm = (props) => {
                   <input 
                     type="radio" 
                     name="userOption" 
-                    value="Employee"
+                    value="EMPLOYEE"
                   >
                 </input>
                 Employee
                 </label>
                 <label>
-                <input type="radio" name="userOption" value="Employer"></input>
+                <input type="radio" name="userOption" value="EMPLOYER"></input>
                 Employer
                 </label>
                 
                 
               </div>
-              <button type="submit">Sign Up</button>
+              <div className="errorDisplay">
+                <div><button type="submit">Sign Up</button></div>
+                <div className="errorMessage">{errorInfo === null ? <p></p> : <p>{errorInfo}</p> }  </div>
+              </div>
             </div>
           </form>
           <div className="login_noacc">
