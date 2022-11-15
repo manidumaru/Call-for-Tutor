@@ -11,6 +11,7 @@ const SignUpForm = (props) => {
     userEmail: "",
     userPassword: "",
     userName: "",
+    role: "",
   });
 
   const submitHandler = (event) => {
@@ -75,6 +76,28 @@ const SignUpForm = (props) => {
                     })
                   }
                 ></input>
+              </div>
+              <div className="empOption" onChange={(e)=>
+                    setUserDetails({
+                      ...userDetails,
+                      role: e.target.value,
+                    })}>
+                <label className="empLabel">Choose your role:</label>
+                <label>
+                  <input 
+                    type="radio" 
+                    name="userOption" 
+                    value="Employee"
+                  >
+                </input>
+                Employee
+                </label>
+                <label>
+                <input type="radio" name="userOption" value="Employer"></input>
+                Employer
+                </label>
+                
+                
               </div>
               <button type="submit">Sign Up</button>
             </div>
