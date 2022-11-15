@@ -2,18 +2,31 @@ import React, { useState } from "react";
 import Modal from "../UI/Modal";
 import "./LogInForm.css";
 import loginImage from "../../assets/loginImage.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
+import axios from 'axios';
 
 const LoginForm = (props) => {
+  const navigate = useNavigate();
+  const logIn = async(event) => {
+    event.preventDefault();
+    await axios.post('http://127.0.0.1:8000/api/login', {
+    email: userDetails.userEmail,
+    password: userDetails.userPassword,
+  })
+  .then(function (response) {
+    console.log(response);
+    navigate("/");
+
+  })
+  .catch(function (error) {
+    console.log(error.response.data.error);
+  })
+  }
+
   const [userDetails, setUserDetails] = useState({
     userEmail: "",
     userPassword: "",
   });
-
-  const submitHandler = (event) => {
-    event.preventDefault();
-    console.log(userDetails);
-  };
 
   return (
     <Modal onClick={props.onClose}>
@@ -22,7 +35,7 @@ const LoginForm = (props) => {
           <img src={loginImage} alt="login"></img>
         </div>
         <div className="login_child2">
-          <form onSubmit={submitHandler}>
+          <form onSubmit={logIn}>
             <div className="form-inner">
               <div className="login_topic">
                 <h2>Call For Tutor</h2>
