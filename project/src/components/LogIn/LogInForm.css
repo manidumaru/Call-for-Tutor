@@ -114,3 +114,15 @@ width: 20%;
 .login_noacc .logintosign{
     text-decoration: underline;
 }
+
+.empOption {
+    padding:0px 0px 10px 0px;
+    display:flex;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.empLabel {
+    font-size:12px;
+}

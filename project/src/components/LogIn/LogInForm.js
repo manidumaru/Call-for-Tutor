@@ -19,7 +19,7 @@ const LoginForm = (props) => {
     <Modal onClick={props.onClose}>
       <div className="login_parent">
         <div className="login_child1">
-          <img src={loginImage} alt="login "></img>
+          <img src={loginImage} alt="login"></img>
         </div>
         <div className="login_child2">
           <form onSubmit={submitHandler}>
