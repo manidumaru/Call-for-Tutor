@@ -261,7 +261,7 @@ def user_signup(request):
             if('role' not in data):
                 return JsonResponse({'error':'role must be specified(EMPLOYER/EMPLOYEE)!!'}, status=400)
             if(data['role'] != 'EMPLOYEE' and data['role']!='EMPLOYER'):
-                return JsonResponse({'error':'role must be either EMPLOYER or EMPLOYEE!!'}, status=400)
+                return JsonResponse({'error':'Please choose a role'}, status=400)
             user = User.objects.create_user(data['email'], name=data['name'], password=data['password'], role=data['role'],)
             user.save()
             if(user.role=='EMPLOYER'):

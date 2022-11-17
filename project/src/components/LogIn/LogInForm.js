@@ -7,6 +7,9 @@ import axios from 'axios';
 
 const LoginForm = (props) => {
   const navigate = useNavigate();
+
+  const [errorInfo, setErrorInfo] = useState(null);
+
   const logIn = async(event) => {
     event.preventDefault();
     await axios.post('http://127.0.0.1:8000/api/login', {
@@ -20,6 +23,7 @@ const LoginForm = (props) => {
   })
   .catch(function (error) {
     console.log(error.response.data.error);
+    setErrorInfo(error.response.data.error);
   })
   }
 
@@ -70,7 +74,11 @@ const LoginForm = (props) => {
                   }
                 ></input>
               </div>
+              <div className="loginAction">
               <button type="submit">Log In</button>
+              
+                {errorInfo === null ? <p></p> : <p className="loginError">{errorInfo}</p> }  
+              </div>
             </div>
           </form>
           <div className="login_noacc">

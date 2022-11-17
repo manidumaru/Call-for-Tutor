@@ -132,7 +132,16 @@ const SignUpForm = (props) => {
           </div>
         </div>
       </div>
-    </div> : <p>Signed Up, Please Login</p> }
+    </div> : 
+      <div className="afterSignUP">
+        <div className="signUP"><p>Signed Up succesfully, Please Login</p></div>
+        <div>
+        <Link to="/log-in">
+              <button>Log In</button>
+        </Link>
+        </div>
+      </div> 
+    }
       
     </Modal>
   );
