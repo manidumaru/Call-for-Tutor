@@ -14,6 +14,7 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import VacancyDetails from "./components/Explore/VacancyDetails";
 import Apply from "./components/Apply/Apply";
 import UserContext from "./userContext";
+import CreateVaccancy from "./components/Explore/CreateVacancy";
 
 function App() {
   // const [token, setToken] = useState(null);
@@ -104,6 +105,7 @@ function App() {
           <Route path="/profile" element={<UserProfile />}></Route>
           <Route path="/vacancy-details" element={<VacancyDetails />}></Route>
           <Route path="/apply-info" element={<Apply />}></Route>
+          <Route path="/create-vaccancy" element={<CreateVaccancy />}></Route>
         </Routes>
       </UserContext.Provider>
     </div>

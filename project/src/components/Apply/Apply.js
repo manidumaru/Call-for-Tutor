@@ -1,81 +1,36 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ApplyEmployer from "./ApplyEmployer";
 import "./Apply.css";
 import { motion as m } from "framer-motion";
 import ApplyEmployee from "./ApplyEmployee";
+import UserContext from "../../userContext";
+import axios from "axios";
 
 const Apply = () => {
-  const isShow = false;
-  const forEmployer = [
-    {
-      poster: "Sasuke",
-      name: "Kathmandu University",
-      employee: [
-        {
-          employeeName: "Naruto",
-          status: "Pending",
-          date: "2022-10-12",
-        },
-        {
-          employeeName: "Boruto",
-          status: "Pending",
-          date: "2022-10-22",
-        },
-      ],
-      //   date: new Date().getFullYear().toLocaleString(),
-    },
-    {
-      poster: "Lonely",
-      name: "Wish University",
-      employee: [
-        {
-          employeeName: "Naruto",
-          status: "Pending",
-          date: "2022-10-12",
-        },
-        {
-          employeeName: "Boruto",
-          status: "Pending",
-          date: "2022-10-22",
-        },
-      ],
-    },
-  ];
+  const state = useContext(UserContext);
+  const token = state.token;
+  const role = state.role;
+  const [result, setResult] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const forEmployee = [
-    {
-      name: "Kathmandu University",
-      poster: "KP Oli",
-      date: "2022-10-14",
-      status: "Pending",
+  const authAxios = axios.create({
+    headers: {
+      Authorization: `Token ${token}`,
     },
-    {
-      name: "Konoha University",
-      poster: "Hatake Kakashi",
-      date: "2021-10-14",
-      status: "Pending",
-    },
-  ];
+  });
+
+  useEffect(() => {
+    authAxios
+      .get("http://127.0.0.1:8000/api/vaccancy/apply")
+      .then(function (response) {
+        setIsLoading(false);
+        setResult(response.data);
+      });
+  });
 
   return (
-    // <div>
-    //   {forEmployer.map((data) => {
-    //     return (
-    //       <div>
-    //         <div>{data.name}</div>
-    //         <div>{data.date}</div>
-    //         <div>
-    //           {data.employee.map((info) => {
-    //             return <div>{info}</div>;
-    //           })}
-    //         </div>
-    //       </div>
-    //     );
-    //   })}
-    // </div>
-    // for employer
     <div>
-      {isShow && (
+      {/* {isShow && (
         <div>
           <h1 className="apply-title">Your Vacancies</h1>
           <m.div
@@ -87,22 +42,39 @@ const Apply = () => {
             <ApplyEmployer details={forEmployer[1]}></ApplyEmployer>
           </m.div>
         </div>
-      )}
-      {!isShow && (
-        <div>
-          <h1 className="apply-title">Your Vacancies</h1>
-          <m.div
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="apply-main-employee"
-          >
-            <ApplyEmployee details={forEmployee[0]}></ApplyEmployee>
-            <ApplyEmployee details={forEmployee[0]}></ApplyEmployee>
-            <ApplyEmployee details={forEmployee[0]}></ApplyEmployee>
-            <ApplyEmployee details={forEmployee[0]}></ApplyEmployee>
-          </m.div>
-        </div>
-      )}
+      )} */}
+
+      <div>
+        <h1 className="apply-title">Your Vacancies</h1>
+        <m.div
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
+          className="apply-main-employee"
+        >
+          <div className="vacancy-enclosure">
+            {!isLoading &&
+              role === "Employee" &&
+              result.map((value) => {
+                return (
+                  <div>
+                    <ApplyEmployee details={value}></ApplyEmployee>
+                  </div>
+                );
+              })}
+          </div>
+          <div className="vacancy-enclosure">
+            {!isLoading &&
+              role === "Employer" &&
+              result.map((value) => {
+                return (
+                  <div className="applicaton-holder">
+                    <ApplyEmployer details={value}></ApplyEmployer>
+                  </div>
+                );
+              })}
+          </div>
+        </m.div>
+      </div>
     </div>
   );
 };

@@ -3,8 +3,10 @@ import "./UserDetails.css";
 import { motion as m } from "framer-motion";
 import axios from "axios";
 import UserContext from "../../userContext";
+import { useNavigate } from "react-router-dom";
 
 const UserDetails = (props) => {
+  const navigator = useNavigate();
   const state = useContext(UserContext);
   const role = state.role;
   const token = state.token;
@@ -74,6 +76,11 @@ const UserDetails = (props) => {
       addEmployer();
     }
   };
+
+  const logout = () => {
+    state.setInfo(null, null, null);
+    navigator("/");
+  }
 
   var profileUpdater;
 
@@ -240,8 +247,9 @@ const UserDetails = (props) => {
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             transition={{ duration: 0.2 }}
+            onClick= {logout}
           >
-            Log out
+            LogOut
           </m.button>
         </div>
       </div>

@@ -39,6 +39,13 @@
   margin-left: 20px;
 }
 
+.create-vacancy-btn {
+  height: 45px;
+  width: 150px;
+  border-radius: 50px;
+  margin-left: 20px;
+}
+
 .vacancy-enclosure {
   display: flex;
   flex-direction: row;

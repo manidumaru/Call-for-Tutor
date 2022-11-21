@@ -3,7 +3,7 @@
 }
 
 .apply-main-employee {
-  margin: 0px 150px 50px;
+  margin: 0px 100px 50px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -11,4 +11,16 @@
 .apply-title {
   color: white;
   margin: 50px 150px 50px;
+}
+
+.vacancy-enclosure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+
+.applicaton-holder {
+  margin: 40px 20px 40px 20px;
 }

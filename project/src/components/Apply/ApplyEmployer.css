@@ -1,4 +1,4 @@
-.applyEmployer {
+/* .applyEmployer {
   display: flex;
   flex-direction: column;
   margin: 50px 0px 50px;
@@ -9,20 +9,9 @@
   color: white;
 }
 
-.vacancy-name h1 {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.vacancy-poster {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
 .employee-status-part {
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid white;
 }
 
 .employee-name-date {
@@ -33,17 +22,10 @@
 .employee-name {
   display: flex;
   flex: 1;
-  /* justify-content: center;
-  align-items: center; */
+  
 }
-.employee-name h3 {
-  /* margin-top: 0px;
-  margin-bottom: 0px; */
-  /* font-weight: normal; */
-}
+
 .employee-date h3 {
-  /* margin-top: 0px;
-  margin-bottom: 0px; */
   font-weight: normal;
 }
 .employee-status {
@@ -76,4 +58,125 @@
   background-color: red;
   opacity: 0.8;
   color: white;
+}
+
+.button-group {
+  display: flex;
+} */
+
+.applyEmployer {
+  padding:25px;
+  border-radius: 20px;
+  background-color: #2c394b;
+  height:300px;
+  width:300px;
+}
+
+.title-holder {
+  color:#42ba96;
+}
+
+.applier-holder {
+  color:white;
+}
+
+.status-holder {
+  color:white;
+}
+
+.employee-status-button {
+  display: flex;
+  justify-content: center;
+}
+
+.employee-status-accept {
+  background-color: #42ba96;
+  margin-right:10px;
+}
+
+.employee-status-reject {
+  background-color: #bb321f;
+  color:white;
+  margin-left:10px;
+  border: 1px solid #2c394b;
+}
+
+.employee-status-reject:hover {
+  background-color:#2c394b;
+  border: 1px solid #bb321f;
+}
+
+.profileViewer {
+  display: flex;
+  justify-content: center;
+}
+
+.ModalHolder {
+  display: flex;
+}
+
+.photoHolder {
+  flex:1;
+  border-top-left-radius:20px;
+  border-bottom-left-radius:20px;
+  background-color: #2C394B;
+}
+
+.photoHolder img {
+  height:200px;
+  width:auto;
+  padding:30px;
+}
+
+.UserDetailsHolder {
+  flex:2;
+  background-color: #082032;
+  padding-top:20px;
+  padding-left: 20px;
+  color:white;
+  border-top-right-radius:20px;
+  border-bottom-right-radius:20px;
+  /* margin: 0px 0px 0px 20px; */
+}
+
+.nameContact {
+  display: flex;
+  padding:10px;
+  /* background-color:antiquewhite; */
+}
+
+.employeeName {
+  flex:1;
+  /* background-color: aqua; */
+
+  font-size: 16px;
+}
+
+.employeeContact {
+  flex:1;
+  /* background-color: lightblue; */
+
+  font-size: 16px;
+}
+
+.qualification-header {
+  font-size:22px;
+  text-align: center;
+}
+
+.qualification {
+  padding:10px;
+}
+
+.listViewhr > hr {
+  /* margin-left:10%;
+  margin-right:10%; */
+  margin:10%;
+  opacity: 0.5;
+  background-color: #3FA796;
+}
+
+.userViewhr > hr {
+  margin-left:10%;
+  margin-right:10%;
 }

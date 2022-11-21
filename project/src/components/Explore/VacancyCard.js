@@ -15,8 +15,8 @@ function VacancyCard(props) {
     <m.div
       initial={{ y: "100%" }}
       animate={{ y: "0%" }}
-      transition={{ duration: 0.15, ease: "easeOut" }}
-      whileHover={{ scale: 1.1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      whileHover={{ scale: 1.03 }}
       className="vacancy-Card"
     >
       <div className="vacancy-image">
@@ -33,7 +33,7 @@ function VacancyCard(props) {
       </div>
       <div className="view-details-btn">
         <m.button
-          whileHover={{ scale: 1.2 }}
+          whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.9 }}
           transition={{ duration: 0.2 }}
           onClick={()=>{

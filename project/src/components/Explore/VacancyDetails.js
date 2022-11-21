@@ -9,9 +9,11 @@ const VacancyDetails = () => {
   const state = useContext(UserContext);
   const token = state.token;
   const role = state.role;
+  const id = state.id;
   const vacencyId = window.location.href.split("=")[1];
   const [vacancyInfo, setVacancyInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [result, setResult] = useState("");
 
   useEffect(() => {
     axios
@@ -22,18 +24,48 @@ const VacancyDetails = () => {
       });
   });
 
-  const vaccancyApplier = () => {
+  const authAxios = axios.create({
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+  });
+
+  authAxios
+    .get(`http://127.0.0.1:8000/api/vaccancy/${vacencyId}/apply`)
+    .then(function (response) {
+      setResult(response.data);
+    })
+    .catch(function (error) {
+      console.log(error.response.data.error);
+    });
+
+    var notApplied = true;
+    if (result.length === 0) {
+      notApplied = true;
+    }
+    else {
+      notApplied = false;
+    }
+
+  const vaccancyApplier = async () => {
     if (token === null) {
       alert("You're not logged in, Login to apply");
-    }
-    else if (role === "Employer") {
+    } else if (role === "Employer") {
       alert("Employer cannot apply");
+    } else if (role === "Employee" && id !== null) {
+      await authAxios
+        .post(`http://127.0.0.1:8000/api/vaccancy/${vacencyId}/apply`)
+        .then(function (response) {
+          alert("Succesfully Applied, Please navigate to apply to check status");
+        })
+        .catch(function (error) {
+          console.log(error.response.data.error);
+        });
     }
-    else if (role === "Employee") {
-
+    else if (role === "Employee" && id === null) {
+      alert("Please create a profile");
     }
-
-  }
+  };
 
   // return (
   //   <div className="vacancy-details">
@@ -95,7 +127,7 @@ const VacancyDetails = () => {
       {!isLoading ? (
         <div className="vacancy-details">
           <div className="vacancy-details-title">
-            <h1>{vacancyInfo.poster}</h1>
+            <h1>Employer: {vacancyInfo.poster}</h1>
           </div>
           <div className="vacancy-details-info">
             <div className="vacancy-details-top">
@@ -138,21 +170,35 @@ const VacancyDetails = () => {
                 {/* </div> */}
               </div>
             </div>
-            <div className="button-apply">
-              <m.button
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ duration: 0.2 }}
-                className=""
-                onClick={vaccancyApplier}
-              >
-                Apply Now
-              </m.button>
-            </div>
+            {notApplied ? (
+              <div className="button-apply">
+                <m.button
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
+                  className=""
+                  onClick={vaccancyApplier}
+                >
+                  Apply Now
+                </m.button>
+              </div>
+            ) : (
+              <div className="button-apply">
+                <m.button
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
+                  className=""
+                  disabled
+                >
+                  Already Applied
+                </m.button>
+              </div>
+            )}
           </div>
         </div>
       ) : (
-        <h2>Loading....</h2>
+        <h2 className="Loading">Loading....</h2>
       )}
     </div>
   );

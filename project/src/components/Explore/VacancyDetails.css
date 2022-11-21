@@ -47,8 +47,9 @@
 }
 
 .horizontal-line {
-  margin: 40px 20px 40px;
+  margin: 20px 70px 20px 70px;
   border-top: 3px solid #25c19b;
+  opacity: 0.2;
 }
 
 .vacancy-details-middle {
@@ -110,4 +111,9 @@
   height: 50px;
   font-size: 20px;
   color: white;
+}
+
+.Loading {
+  color:white;
+  text-align: center;
 }
