@@ -5,6 +5,7 @@
   any_name_you_like\scripts\activate
 3)While virtual environment is active, 
   pip install django djangorestframework Pillow
+  python -m pip install django-cors-headers
   Pillow is used for image processing
 4)locate manage.py inside root inventory folder, then
   python manage.py makemigrations (enter)
