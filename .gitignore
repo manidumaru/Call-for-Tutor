@@ -1,4 +1,6 @@
 /Backend/mvenv
 /Backend/inventory/myenv
 /Backend/inventory/core/migrations/__pycache__
+/Backend/inventory/core/__pycache__
+/Backend/inventory/inventory/__pycache__
 /Backend/inventory/db.sqlite3
