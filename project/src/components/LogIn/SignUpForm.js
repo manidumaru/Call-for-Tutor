@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import Modal from "../UI/Modal";
 // import "./LogIn.css";
 import loginImage from "../../assets/loginImage.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 const SignUpForm = (props) => {
-  const Navigate = useNavigate();
   const [errorInfo, setErrorInfo] = useState(null);
   const [responseInfo, setResponseInfo] = useState(null);
 

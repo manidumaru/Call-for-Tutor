@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Modal from "../UI/Modal";
 import "./LogInForm.css";
 import loginImage from "../../assets/loginImage.png";
 import { Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
+import UserContext from "../../userContext";
 
 const LoginForm = (props) => {
   const navigate = useNavigate();
-
+  const state = useContext(UserContext);
   const [errorInfo, setErrorInfo] = useState(null);
 
   const logIn = async(event) => {
@@ -18,6 +19,18 @@ const LoginForm = (props) => {
   })
   .then(function (response) {
     console.log(response);
+    console.log(response.data.token);
+    console.log(response.data.user.role);
+    if (!response.data.user.employee_id && !response.data.user.employer_id) {
+      state.setInfo(response.data.token, response.data.user.role, null);
+    }
+    else if (response.data.user.employer_id) {
+      state.setInfo(response.data.token, response.data.user.role, response.data.user.employer_id);
+    }
+    else {
+      state.setInfo(response.data.token, response.data.user.role, response.data.user.employee_id);
+    }
+    
     navigate("/");
 
   })

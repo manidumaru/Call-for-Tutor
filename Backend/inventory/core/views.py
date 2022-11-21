@@ -286,7 +286,7 @@ def user_login(request):
         user = authenticate(request, email=data['email'], password=data['password'])
 
         if user is None:
-            return JsonResponse({'error':'Could not login. Please check username and password'}, status=400)
+            return JsonResponse({'error':'Please check username and password'}, status=400)
         else:
             try:
                 token = Token.objects.get(user=user)
@@ -294,7 +294,6 @@ def user_login(request):
                 token = Token.objects.create(user=user)
             if(user.role=='EMPLOYER'):
                 if(user.is_employer):
-                    
                     employer=Employer.objects.get(user=user)
                     userjson={'role':"Employer", 'employer_id':employer.id, 'username':employer.username}
                 else:

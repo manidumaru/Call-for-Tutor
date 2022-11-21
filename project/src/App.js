@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Link, Route, Routes } from "react-router-dom";
 import MainHome from "./components/Homepage/MainHome";
 import About from "./components/About/About";
@@ -7,13 +7,31 @@ import "./App.css";
 import LogIn from "./components/LogIn/LogIn";
 import Donate from "./components/Donate/Donate";
 import logo from "./assets/aboutus.png";
+import profileImage from "./assets/profile.png";
 import SignUp from "./components/LogIn/SignUp";
 import { motion as m } from "framer-motion";
 import UserProfile from "./components/UserProfile/UserProfile";
 import VacancyDetails from "./components/Explore/VacancyDetails";
 import Apply from "./components/Apply/Apply";
+import UserContext from "./userContext";
 
 function App() {
+  // const [token, setToken] = useState(null);
+  // const value = { token, setToken };
+
+  const setInfo = (token, role, id) => {
+    setState({ ...state, token: token, role: role, id: id });
+  };
+
+  const initState = {
+    token: null,
+    role: null,
+    id: null,
+    setInfo: setInfo,
+  };
+
+  const [state, setState] = useState(initState);
+
   return (
     <div className="main-page">
       <div className="navbar">
@@ -38,17 +56,29 @@ function App() {
             <li>
               <NavLink to="/apply-info">Apply</NavLink>
             </li>
-            <li>
-              <Link to="/log-in">
-                <m.button
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Log In
-                </m.button>
-              </Link>
-            </li>
+            <div className="loginState">
+              {state.token === null ? (
+                <li>
+                  <Link to="/log-in">
+                    <m.button
+                      whileHover={{ scale: 1.2 }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      Log In
+                    </m.button>
+                  </Link>
+                </li>
+              ) : (
+                <li>
+                  <Link to="/profile">
+                    <div className="profile-image">
+                      <img src={profileImage} alt=""></img>
+                    </div>
+                  </Link>
+                </li>
+              )}
+            </div>
             <li>
               <Link to="/donate">
                 <m.button
@@ -63,17 +93,19 @@ function App() {
           </ul>
         </div>
       </div>
-      <Routes>
-        <Route path="/" element={<MainHome />}></Route>
-        <Route path="/explore" element={<Explore />}></Route>
-        <Route path="/about-us" element={<About />}></Route>
-        <Route path="/log-in" element={<LogIn />}></Route>
-        <Route path="/sign-up" element={<SignUp />}></Route>
-        <Route path="/donate" element={<Donate />}></Route>
-        <Route path="/profile" element={<UserProfile />}></Route>
-        <Route path="/vacancy-details" element={<VacancyDetails />}></Route>
-        <Route path="/apply-info" element={<Apply />}></Route>
-      </Routes>
+      <UserContext.Provider value={state}>
+        <Routes>
+          <Route path="/" element={<MainHome />}></Route>
+          <Route path="/explore" element={<Explore />}></Route>
+          <Route path="/about-us" element={<About />}></Route>
+          <Route path="/log-in" element={<LogIn />}></Route>
+          <Route path="/sign-up" element={<SignUp />}></Route>
+          <Route path="/donate" element={<Donate />}></Route>
+          <Route path="/profile" element={<UserProfile />}></Route>
+          <Route path="/vacancy-details" element={<VacancyDetails />}></Route>
+          <Route path="/apply-info" element={<Apply />}></Route>
+        </Routes>
+      </UserContext.Provider>
     </div>
   );
 }

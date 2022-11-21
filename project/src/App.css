@@ -71,3 +71,9 @@ button:hover {
     height:55px;
     opacity: 2;
 }
+
+
+.profile-image img {
+    width:40px;
+    height:40px;
+}

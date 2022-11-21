@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
+import UserContext from "../../userContext";
 import UserDetails from "./UserDetails";
+import axios from "axios";
 
 const UserProfile = () => {
-  const Details = {
-    photo:
-      "https://bobbyhadz.com/images/blog/react-prevent-multiple-button-clicks/thumbnail.webp",
-    name: "Manoj Shrestha",
-    sex: "Male",
-    address: "Space-X, US",
-    dob: "10/10/1996",
-    username: "chiDori",
-    contact: "+977-9841121314",
-    qualifications:
-      "if you die only once then i want to die with you. ypu got something i nedd in the world full of people. i know that we are not the same. you fot something i need. in the world full of people there is one killing me.",
-  };
+  const state = useContext(UserContext);
+  const role = state.role;
+  const token = state.token;
+  const id = state.id;
+
+  const [Details, setDetails] = useState("");
+
+  const authAxios = axios.create({
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+  });
+
+  useEffect(() => {
+    if (role === "Employee") {
+      authAxios.get( "http://127.0.0.1:8000/api/employee/" + id ).then(function (response) {
+        setDetails(response.data);
+      });
+    }
+    else {
+      authAxios.get( "http://127.0.0.1:8000/api/employer/" + id ).then(function (response) {
+        setDetails(response.data);
+      });
+    }
+  });
 
   return <UserDetails details={Details}></UserDetails>;
 };
